@@ -1,0 +1,13 @@
+# The following definitions must be changed for each site
+# 
+# Common prefixes
+SUPPORT = /dls_sw/prod/R3.14.12.3/support
+# Module definitions
+ASYN = $(SUPPORT)/asyn/4-31
+BUSY = $(SUPPORT)/busy/1-6-1dls1
+CALC = $(SUPPORT)/calc/3-1
+MOTOR = $(SUPPORT)/motor/6-9dls14
+PMAC = $(TOP)/../../
+# EPICS Base appears last
+EPICS_BASE = /dls_sw/epics/R3.14.12.3/base
+EPICS_EXTENSIONS = /dls_sw/epics/R3.14.12.3/extensions

@@ -1,0 +1,4 @@
+NAME=mcf01
+USER=softioc-hex
+PORT=5004
+HOST=xf27id1-ioc1

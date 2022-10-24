@@ -1,0 +1,14 @@
+Motion axes
+-----------
+1 - XF:27IDF-OP:1{Slt:2-Ax:I}Mtr
+2 - XF:27IDF-OP:1{Slt:2-Ax:O}Mtr
+3 - XF:27IDF-OP:1{Slt:2-Ax:B}Mtr
+4 - XF:27IDF-OP:1{Slt:2-Ax:T}Mtr
+5 - XF:27IDF-OP:1{MC:1-Ax:5}Mtr
+6 - XF:27IDF-OP:1{MC:1-Ax:6}Mtr
+7 - XF:27IDF-OP:1{MC:1-Ax:7}Mtr
+8 - XF:27IDF-OP:1{MC:1-Ax:8}Mtr
+6 - XF:27IDF-OP:1{Slt:2-Ax:HG}Mtr
+7 - XF:27IDF-OP:1{Slt:2-Ax:HC}Mtr
+6 - XF:27IDF-OP:1{Slt:2-Ax:VG}Mtr
+7 - XF:27IDF-OP:1{Slt:2-Ax:VC}Mtr

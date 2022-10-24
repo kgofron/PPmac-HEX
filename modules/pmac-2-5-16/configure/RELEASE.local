@@ -1,0 +1,8 @@
+#ASYN=       $(SUPPORT)
+#CALC=       $(SUPPORT)
+#MOTOR=      $(SUPPORT)
+#BUSY=       $(SUPPORT)
+#SUPPORT=$(EPICS_BASE)
+EPICS_BASE=/usr/lib/epics
+
+

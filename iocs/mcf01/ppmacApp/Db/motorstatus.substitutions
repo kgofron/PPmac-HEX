@@ -1,0 +1,35 @@
+file "db/ppmac_motorstatus.db"
+{
+pattern
+{SYS,              DEV,                PORT,  AXIS }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:I}",     "P0",  1    }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:O}",     "P0",  2    }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:B}",     "P0",  3    }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:T}",     "P0",  4    }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:5}",      "P0",  5    }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:6}",      "P0",  6    }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:7}",      "P0",  7    }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:8}",      "P0",  8    }
+}
+
+file "db/ppmacStatusAxis.db"
+{
+pattern
+{SYS,               DEV,            PORT,  AXIS }
+{"XF:27IDF-CT",     "{MC:01-Ax:1}", "P0",  1    }
+{"XF:27IDF-CT",     "{MC:01-Ax:2}", "P0",  2    }
+{"XF:27IDF-CT",     "{MC:01-Ax:3}", "P0",  3    }
+{"XF:27IDF-CT",     "{MC:01-Ax:4}", "P0",  4    }
+{"XF:27IDF-CT",     "{MC:01-Ax:5}", "P0",  5    }
+{"XF:27IDF-CT",     "{MC:01-Ax:6}", "P0",  6    }
+{"XF:27IDF-CT",     "{MC:01-Ax:7}", "P0",  7    }
+{"XF:27IDF-CT",     "{MC:01-Ax:8}", "P0",  8    }
+}
+
+file "db/pmacStatusAxis.template"
+{
+pattern
+{PMAC,                     PORT, AXIS}
+{"XF:27IDF-CT{MC:01}",     "P0", 1   }
+{"XF:27IDF-CT{MC:01}",     "P0", 2   }
+}

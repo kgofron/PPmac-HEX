@@ -1,0 +1,6 @@
+file "db/ppmacStatus.db"
+{
+pattern
+{SYS,               PMAC,    VERSION  PLC  PORT,  NAXES }
+{"XF:27IDF-CT",     "MC:01", "1"      5    "P0",  8     }
+}

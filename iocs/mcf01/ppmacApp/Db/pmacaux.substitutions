@@ -1,0 +1,13 @@
+file "${TOP}/db/ppmacaux.db"
+{
+pattern
+{SYSP,             DEVP,               SYSV,             DEVV,               AXIS  }
+{"XF:27IDF-CT",     "{MC:01-Ax:1}", "XF:27IDF-OP:1",  "{Slt:2-Ax:I}",     1    }
+{"XF:27IDF-CT",     "{MC:01-Ax:2}", "XF:27IDF-OP:1",  "{Slt:2-Ax:O}",     2    }
+{"XF:27IDF-CT",     "{MC:01-Ax:3}", "XF:27IDF-OP:1",  "{Slt:2-Ax:B}",     3    }
+{"XF:27IDF-CT",     "{MC:01-Ax:4}", "XF:27IDF-OP:1",  "{Slt:2-Ax:T}",     4    }
+{"XF:27IDF-CT",     "{MC:01-Ax:5}", "XF:27IDF-OP:1",  "{MC:1-Ax:5}",      5    }
+{"XF:27IDF-CT",     "{MC:01-Ax:6}", "XF:27IDF-OP:1",  "{MC:1-Ax:6}",      6    }
+{"XF:27IDF-CT",     "{MC:01-Ax:7}", "XF:27IDF-OP:1",  "{MC:1-Ax:7}",      7    }
+{"XF:27IDF-CT",     "{MC:01-Ax:8}", "XF:27IDF-OP:1",  "{MC:1-Ax:8}",      8    }
+}

@@ -1,0 +1,9 @@
+// gobal defs for CS 3 forward inverse and PLC
+
+// These are set by motor_in_cs.template
+#define J1MOVE P(4700+3)
+#define J1MRES P(4800+3)
+#define J1OFF  P(4900+3)
+#define J2MOVE P(4700+4)
+#define J2MRES P(4800+4)
+#define J2OFF  P(4900+4)

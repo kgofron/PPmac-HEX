@@ -1,0 +1,13 @@
+file "${TOP}/db/pmac_physical_limit.db"
+{
+pattern
+{SYS,              DEV,                }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:I}"      }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:O}"      }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:B}"      }
+{"XF:27IDF-OP:1",  "{Slt:2-Ax:T}"      }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:5}"       }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:6}"       }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:7}"       }
+{"XF:27IDF-OP:1",  "{MC:1-Ax:8}"       }
+}

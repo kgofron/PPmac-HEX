@@ -1,0 +1,170 @@
+; ###################################################
+;     SETUP for RUNNING TESTS ON CLIPPER
+; ###################################################
+; these settings make clipper pull in tight to position before reporting 'in position'
+i128,8,100=32      ; in position band
+i188,8,100=100    ; count of cycles in position before move complete
+
+#include "../../pmacApp/pmc/PROG10_CS_motion.pmc"          ; motion program for making CS moves
+#include "lab-home.pmc"                                 ; auto homing PLC
+; NOTE also requires standard MVariables etc from "/dls_sw/work/motion/Common/PMAC_CLIPPER_Startup.pmc"
+
+i5250=0 ; disable kinematics for CS 2 which will use mappings only
+
+; **************************************************************
+; Coordinate system generated using following command
+; msi -M"COORD=3,PLC=17,J1=3,J2=4,DIST=1000,PIVOT=500,DEPTH=0" /dls_sw/prod/R3.14.12.3/support/pmacCoord/1-51/pmacCoordApp/pmc/CS_2jack.pmc
+; **************************************************************
+
+;################################################
+;; \file
+;; Super Simple motion for 2 jack system
+;;
+;; Original Author: giles knap
+;;
+;; Defined axes:
+;; - X (addr 6) = height of surface in EGU
+;; - Y (addr 7) = Difference between jack1 and jack2
+;;
+;; Macros:
+;; - COORD = 3  CS number, e.g. 2
+;; - PLC = 17  PLC number, should be CS number+15, e.g. 17
+;; - J1 = 3  Axisnum for Jack 1, e.g. 1
+;; - J2 = 4  Axisnum for Jack 2, e.g. 2
+;################################################
+
+; Change to CS3
+&3
+
+; Set relevant axes to use kinematics
+#3->I ; +ve blade
+#4->I ; -ve blade
+
+; These are set by motor_in_cs.template
+#define J1MOVE P(4700+3)
+#define J1MRES P(4800+3)
+#define J1OFF  P(4900+3)
+#define J2MOVE P(4700+4)
+#define J2MRES P(4800+4)
+#define J2OFF  P(4900+4)
+
+; Calculate height and DIFFERENCE between jack positions
+#define J1POS (J1MRES*P3+J1OFF)
+#define J2POS (J2MRES*P4+J2OFF)
+#define HEIGHT Q7
+#define DIFFERENCE Q8
+
+OPEN FORWARD
+CLEAR
+    ; this is the DIFFERENCE between Jacks
+    DIFFERENCE=(J2POS-J1POS)
+    ; the height of centre of the surface
+    HEIGHT=J1POS+DIFFERENCE/2
+CLOSE
+
+; Calculate jack positions from height and DIFFERENCE
+#define J1POS Q230
+#define J2POS Q231
+OPEN INVERSE
+CLEAR
+    ; work out the jack positions in EGUs
+    J1POS = HEIGHT - DIFFERENCE/2
+    J2POS = HEIGHT + DIFFERENCE/2
+    ; then motor counts
+    P3=(J1POS-J1OFF)/J1MRES
+    P4=(J2POS-J2OFF)/J2MRES
+CLOSE
+
+; A PLC(sx+15) needs to be made to do position reporting
+; Readbacks should be in &{axisnum}Q81..89
+; As forward kinematic, but with Px = mx62/(Ix08*32)
+#define J1POS (J1MRES*m362/(I308*32)+J1OFF)
+#define J2POS (J2MRES*m462/(I408*32)+J2OFF)
+#define HEIGHT Q87
+#define DIFFERENCE Q88
+OPEN PLC18
+CLEAR
+    ADDRESS&3
+    ; this is the DIFFERENCE between Jacks
+    DIFFERENCE=(J2POS-J1POS)
+    ; the height of centre of the surface
+    HEIGHT=J1POS+DIFFERENCE/2
+CLOSE
+ENABLE PLC18
+
+open plc 1 clear
+IF(M4900=0)
+M4900=1
+M4965=393216
+DISABLE PLC2..31
+I5112=1000*8388608/I10
+WHILE(I5112>0)
+ENDWHILE
+ENABLE PLC6
+I5112=100*8388608/I10
+WHILE(I5112>0)
+ENDWHILE
+WHILE(M5006=0)
+ENDWHILE
+ENDIF
+ADDRESS&16
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&15
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&14
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&13
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&12
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&11
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&10
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&9
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&8
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&7
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&6
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&5
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&4
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&3
+COMMAND"DEFINE LOOKAHEAD 50,10"
+ADDRESS&2
+COMMAND"DEFINE LOOKAHEAD 50,10"
+DISABLE PLC2
+DISABLE PLC3
+DISABLE PLC4
+DISABLE PLC5
+DISABLE PLC7
+DISABLE PLC8
+DISABLE PLC9
+DISABLE PLC10
+DISABLE PLC11
+DISABLE PLC12
+DISABLE PLC13
+DISABLE PLC14
+DISABLE PLC15
+DISABLE PLC16
+DISABLE PLC17
+ENA PLC18
+DISABLE PLC19
+DISABLE PLC20
+DISABLE PLC21
+DISABLE PLC22
+DISABLE PLC23
+DISABLE PLC24
+DISABLE PLC25
+DISABLE PLC26
+DISABLE PLC27
+DISABLE PLC28
+DISABLE PLC29
+DISABLE PLC30
+DISABLE PLC31
+DISABLE PLC1
+close

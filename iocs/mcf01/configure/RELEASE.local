@@ -1,0 +1,2 @@
+PMAC=/epics/modules/pmac-2-5-16
+EPICS_BASE=/usr/lib/epics
